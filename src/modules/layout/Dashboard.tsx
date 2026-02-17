@@ -36,7 +36,7 @@ const statsItems: Array<MetricData> = [
     value: "12.847",
     change: "+12.5%",
     icon: UserPlus,
-    color: "text-green-500",
+    color: "text-emerald-600",
     isAlert: false,
   },
   {
@@ -58,6 +58,7 @@ const statsItems: Array<MetricData> = [
     isAlert: true,
   },
 ];
+
 export default function Dashboard() {
   return (
     <>

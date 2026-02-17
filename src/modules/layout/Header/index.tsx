@@ -1,27 +1,29 @@
 import { AlertTriangle, ArrowUpRight, Bell } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { recentIncidents } from "../../data/incidents";
+import { recentIncidents } from "../../../data/incidents";
 
-type Props = {};
-
-function Header({}: Props) {
-  const notificationRef = useRef(null);
+function Header() {
+  const notificationRef = useRef<HTMLDivElement>(null);
   const [showNotifications, setShowNotifications] = useState(false);
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (
+    function handleClickOutside(event: MouseEvent) {
+      const isOut =
         notificationRef.current &&
-        !notificationRef.current.contains(event.target)
-      ) {
-        setShowNotifications(false);
-      }
+        notificationRef.current.contains(event.target as Node);
+
+      if (!isOut) setShowNotifications(false);
     }
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, [notificationRef]);
+
   return (
-    <div className="flex justify-between items-end relative pb-7">
+    <div className="flex justify-between items-end relative">
       <div>
         <h1 className="text-4xl font-heavy text-navy tracking-tight">
           Monitoramento

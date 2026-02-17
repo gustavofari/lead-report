@@ -1,4 +1,4 @@
-export default function CMSLink({ href, label, icon }: any) {
+export default function CMSLink({ href, label, icon }) {
   return (
     <a
       href={href}
@@ -8,5 +8,5 @@ export default function CMSLink({ href, label, icon }: any) {
     >
       {icon} {label}
     </a>
-  )
+  );
 }
