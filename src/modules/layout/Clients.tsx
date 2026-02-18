@@ -9,7 +9,7 @@ function Clients() {
 
   return (
     <>
-      <div className="flex flex-col p-8 h-full">
+      <div className="flex flex-col h-full w-full p-6">
         <header className="mb-8 flex justify-between items-end">
           <div>
             <h2 className="text-3xl font-black text-slate-800">

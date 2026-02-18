@@ -61,8 +61,8 @@ const statsItems: Array<MetricData> = [
 
 export default function Dashboard() {
   return (
-    <>
-      <div className="flex flex-col h-full p-6 bg-[#F8FAFC] overflow-hidden space-y-8">
+    <div className="container">
+      <div className="flex flex-col h-full w-full bg-[#F8FAFC] overflow-hidden space-y-8 p-6">
         <Header />
         <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
           {statsItems.map((stats) => (
@@ -93,6 +93,6 @@ export default function Dashboard() {
         </div>
       </div>
       <Clients />
-    </>
+    </div>
   );
 }

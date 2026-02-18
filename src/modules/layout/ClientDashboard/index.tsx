@@ -14,7 +14,7 @@ export default function ClientDashboard() {
   const client = clientsData[0];
 
   return (
-    <div className="flex-1 bg-white p-8">
+    <div className="container">
       <div className="flex justify-between items-center mb-8">
         <Link
           to="/"
