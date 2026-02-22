@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
   XAxis,
   YAxis,
@@ -9,10 +9,55 @@ import {
   ComposedChart,
   Legend,
   Area,
-} from 'recharts'
+} from "recharts";
 
-function PerformanceChart({ client }) {
-  const [period, setPeriod] = useState('hoje')
+function PerformanceChart() {
+  const analyticsData = [
+    {
+      label: "00:00",
+      leads: 120,
+      errors: 2,
+      success: 98.3,
+    },
+    {
+      label: "04:00",
+      leads: 85,
+      errors: 0,
+      success: 100,
+    },
+    {
+      label: "08:00",
+      leads: 450,
+      errors: 15,
+      success: 96.6,
+    },
+    {
+      label: "12:00",
+      leads: 890,
+      errors: 120,
+      success: 86.5,
+    },
+    {
+      label: "16:00",
+      leads: 1050,
+      errors: 12,
+      success: 98.8,
+    },
+    {
+      label: "20:00",
+      leads: 620,
+      errors: 5,
+      success: 99.1,
+    },
+    {
+      label: "23:59",
+      leads: 210,
+      errors: 1,
+      success: 99.5,
+    },
+  ];
+
+  const [period, setPeriod] = useState("hoje");
   return (
     <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-sm relative overflow-hidden">
       <div className="flex justify-between items-center mb-10">
@@ -25,11 +70,11 @@ function PerformanceChart({ client }) {
           </p>
         </div>
         <div className="flex p-1 rounded-2xl shadow-xl">
-          {['hoje', 'semana', 'mês', 'ano'].map((p) => (
+          {["hoje", "semana", "mês", "ano"].map((p) => (
             <button
               key={p}
               onClick={() => setPeriod(p)}
-              className={`px-4 py-2 rounded-xl text-[9px] font-black uppercase transition-all tracking-widest ${period === p ? 'bg-blue-600 text-white' : 'text-slate-500 hover:text-slate-300'}`}
+              className={`px-4 py-2 rounded-xl text-[9px] font-black uppercase transition-all tracking-widest ${period === p ? "bg-blue-600 text-white" : "text-slate-500 hover:text-slate-300"}`}
             >
               {p}
             </button>
@@ -43,7 +88,7 @@ function PerformanceChart({ client }) {
           className="outline-none"
         >
           <ComposedChart
-            data={client.crm.analyticsData}
+            data={analyticsData}
             margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
           >
             <defs>
@@ -61,26 +106,26 @@ function PerformanceChart({ client }) {
               dataKey="label"
               axisLine={false}
               tickLine={false}
-              tick={{ fontSize: 10, fontWeight: '800', fill: '#94a3b8' }}
+              tick={{ fontSize: 10, fontWeight: "800", fill: "#94a3b8" }}
             />
             <YAxis
               yAxisId="left"
               axisLine={false}
               tickLine={false}
-              tick={{ fontSize: 10, fontWeight: '800', fill: '#94a3b8' }}
+              tick={{ fontSize: 10, fontWeight: "800", fill: "#94a3b8" }}
             />
             <YAxis
               yAxisId="right"
               orientation="right"
               axisLine={false}
               tickLine={false}
-              tick={{ fontSize: 10, fontWeight: '800', fill: '#10b981' }}
+              tick={{ fontSize: 10, fontWeight: "800", fill: "#10b981" }}
             />
             <Tooltip
               contentStyle={{
-                borderRadius: '20px',
-                border: 'none',
-                boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)',
+                borderRadius: "20px",
+                border: "none",
+                boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1)",
               }}
             />
             <Legend
@@ -88,10 +133,10 @@ function PerformanceChart({ client }) {
               align="right"
               iconType="circle"
               wrapperStyle={{
-                fontSize: '10px',
-                fontWeight: '800',
-                textTransform: 'uppercase',
-                paddingBottom: '30px',
+                fontSize: "10px",
+                fontWeight: "800",
+                textTransform: "uppercase",
+                paddingBottom: "30px",
               }}
             />
             <Area
@@ -112,9 +157,9 @@ function PerformanceChart({ client }) {
               strokeWidth={3}
               dot={{
                 r: 4,
-                fill: '#ef4444',
+                fill: "#ef4444",
                 strokeWidth: 2,
-                stroke: '#fff',
+                stroke: "#fff",
               }}
             />
             <Line
@@ -126,16 +171,16 @@ function PerformanceChart({ client }) {
               strokeWidth={3}
               dot={{
                 r: 4,
-                fill: '#fff',
+                fill: "#fff",
                 strokeWidth: 2,
-                stroke: '#10b981',
+                stroke: "#10b981",
               }}
             />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
     </div>
-  )
+  );
 }
 
-export default PerformanceChart
+export default PerformanceChart;

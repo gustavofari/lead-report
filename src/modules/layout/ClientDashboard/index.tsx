@@ -8,10 +8,11 @@ import ErrorDiagnostics from "./sections/ErrorDiagnostics";
 import PayloadSectionConfig from "./sections/PayloadSectionConfig";
 import CrmConfigSidebar from "./sections/CrmConfigSidebar";
 import clientsData from "../../../data/crmData";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function ClientDashboard() {
-  const client = clientsData[0];
+  const { id } = useParams<{ id: string }>();
+  const client = clientsData[id];
 
   return (
     <div className="container">
@@ -54,20 +55,20 @@ export default function ClientDashboard() {
             <div className="flex gap-6 mt-8">
               <DependencyBadge
                 label="Entrada"
-                sub="ATD"
-                active={client.pipeline.input}
+                sub="CMS"
+                active={client.pipeline.cms}
               />
               <div className="flex items-center text-slate-200">──</div>
               <DependencyBadge
                 label="Processamento"
-                sub="Make.com"
-                active={client.pipeline.process}
+                sub="Make"
+                active={client.pipeline.make}
               />
               <div className="flex items-center text-slate-200">──</div>
               <DependencyBadge
                 label="Saída"
-                sub="CRM SALESFORCE"
-                active={client.pipeline.output}
+                sub="CRM"
+                active={client.pipeline.crm}
               />
             </div>
           </div>
@@ -92,7 +93,7 @@ export default function ClientDashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2 space-y-12">
-          <PerformanceChart client={client} />
+          <PerformanceChart />
 
           <PayloadSectionConfig client={client} />
 
@@ -100,7 +101,7 @@ export default function ClientDashboard() {
             <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
               <Bug size={16} className="text-rose-500" /> Diagnóstico de Erros
             </h3>
-            {client.crm.recentIncidents.map((inc: any) => (
+            {client.crm.error.recentIncidents.map((inc) => (
               <ErrorDiagnostics inc={inc} />
             ))}
           </div>

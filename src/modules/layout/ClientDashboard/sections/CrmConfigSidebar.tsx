@@ -1,15 +1,9 @@
-import {
-  BarChart3,
-  Copy,
-  ExternalLink,
-  Eye,
-  EyeOff,
-  Settings,
-} from 'lucide-react'
-import { useState } from 'react'
+import { Copy, ExternalLink, Eye, EyeOff, Settings } from "lucide-react";
+import { useState } from "react";
+import type { Client } from "../../../../types/crm";
 
-function CrmConfigSidebar({ client }) {
-  const [showToken, setShowToken] = useState(false)
+function CrmConfigSidebar({ client }: { client: Client }) {
+  const [showToken, setShowToken] = useState(false);
 
   return (
     <aside className="space-y-8">
@@ -39,7 +33,7 @@ function CrmConfigSidebar({ client }) {
             </p>
             <div className="flex items-center gap-2 bg-slate-50 p-3 rounded-xl border border-slate-100">
               <p className="text-[10px] font-mono text-slate-600 flex-1 truncate">
-                {showToken ? client.crm.token : '••••••••••••••••••••••••••••'}
+                {showToken ? client.crm.token : "••••••••••••••••••••••••••••"}
               </p>
               <button
                 onClick={() => setShowToken(!showToken)}
@@ -55,7 +49,7 @@ function CrmConfigSidebar({ client }) {
               Documentação
             </p>
             <a
-              href={client.crm.documentation}
+              href={client.crm.documentation.officialDocs}
               target="_blank"
               className="flex items-center justify-between p-4 bg-blue-50 rounded-2xl text-blue-600 text-[10px] font-black uppercase hover:bg-blue-600 hover:text-white transition-all shadow-sm"
             >
@@ -68,13 +62,13 @@ function CrmConfigSidebar({ client }) {
               Notas Técnicas
             </p>
             <p className="text-xs text-slate-500 font-bold bg-slate-50 p-4 rounded-2xl border-l-4 border-blue-500 italic">
-              {client.crm.techNotes}
+              {client.crm.documentation.techNotes}
             </p>
           </div>
         </div>
       </div>
     </aside>
-  )
+  );
 }
 
-export default CrmConfigSidebar
+export default CrmConfigSidebar;

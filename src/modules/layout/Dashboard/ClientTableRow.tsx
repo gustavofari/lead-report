@@ -1,8 +1,8 @@
 import { ChevronRight, Zap } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { StatusBadge } from "../../common/components/StatusBadge";
-import type { Client } from "../../types/crm";
+import { StatusBadge } from "../../../common/components/StatusBadge";
+import type { Client } from "../../../types/crm";
 
 const ClientTableRow = React.memo(function ClientTableRow({
   client,
@@ -36,24 +36,13 @@ const ClientTableRow = React.memo(function ClientTableRow({
         </div>
       </td>
       <td className="px-4 py-4">
-        <StatusBadge status={client.crm.status} />
+        <StatusBadge status={client.status} />
       </td>
       <td className="px-6 py-5">
         <div className="w-32 bg-slate-100 h-1.5 rounded-full overflow-hidden mb-1.5">
-          <div
-            className="bg-blue-600 h-full"
-            // style={{
-            //   width: calculatePercentage(
-            //     client.currentUsage,
-            //     client.monthlyQuota,
-            //   ),
-            // }}
-          ></div>
+          <div className="bg-blue-600 h-full"></div>
         </div>
-        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">
-          {/* {formatCompactNumber(client.currentUsage)}k /
-          {formatCompactNumber(client.monthlyQuota)}k leads */}
-        </p>
+        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-tighter"></p>
       </td>
       <td className="px-6 py-5">
         <div className="flex items-center gap-2">

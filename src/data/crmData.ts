@@ -5,138 +5,198 @@ const clientsData: Client[] = [
     id: "1",
     name: "TechCorp Solutions",
     subtitle: "Concessionária Premium - Regional Sul",
-    pipeline: { input: true, process: true, output: true },
+    pipeline: { cms: true, make: true, crm: true },
+    sync: "1 min atrás",
+    status: "Alerta",
     crm: {
       name: "Salesforce Production",
-      status: "Saudável",
       endpoint: "https://api.salesforce.com/v1/leads",
       token: "",
       leadsSent: 45200,
       successRate: 99.2,
-      activeErrors: 0,
-      documentation: "https://developer.salesforce.com/docs",
-      techNotes:
-        "Integração via OAuth2. Requer ClientID atualizado anualmente via Make.com.",
-      mapping: [
-        { field: "full_name", target: "Name", required: true },
-        { field: "email", target: "Email", required: true },
-        { field: "phone", target: "Phone", required: false },
-      ],
-      rawJson: {
-        lead: {
-          name: "{{full_name}}",
-          email: "{{email}}",
+      error: {
+        hasActiveError: true,
+        recentIncidents: [
+          {
+            id: "err-01",
+            errorType: "Validation Error",
+            message: "E-mail inválido ou campo obrigatório ausente.",
+            apiResponse: '400 Bad Request: {"error": "email_format_invalid"}',
+            leadData: {
+              name: "Gustavo Teste",
+              email: "gustavo@invalido",
+              phone: "11999999999",
+            },
+            occurredAt: "2026-01-23T10:15:00Z",
+          },
+        ],
+      },
+      documentation: {
+        officialDocs: "https://developer.salesforce.com/docs",
+        payload: {
+          name: "full_name",
+          email: "email",
           source: "CMS_Automotivo",
         },
+        techNotes:
+          "Integração via OAuth2. Requer ClientID atualizado anualmente via Make.com.",
       },
-      sourceData: [
-        { name: "Google Ads", value: 18500, color: "#3b82f6" },
-        { name: "Facebook Ads", value: 12400, color: "#1d4ed8" },
-        { name: "Site Direto", value: 8900, color: "#64748b" },
-      ],
-      analyticsData: [
-        { label: "08:00", leads: 450, success: 98, errors: 5, latency: 145 },
-        { label: "10:00", leads: 890, success: 99, errors: 2, latency: 160 },
-        {
-          label: "12:00",
-          leads: 1100,
-          success: 94,
-          errors: 45,
-          latency: 210,
-        },
-        { label: "14:00", leads: 920, success: 99, errors: 3, latency: 155 },
-        {
-          label: "16:00",
-          leads: 1050,
-          success: 100,
-          errors: 0,
-          latency: 140,
-        },
-        { label: "18:00", leads: 700, success: 98, errors: 8, latency: 135 },
-      ],
-      recentIncidents: [
-        {
-          id: "err-01",
-          type: "Validation Error",
-          message: "E-mail inválido ou campo obrigatório ausente.",
-          return: '400 Bad Request: {"error": "email_format_invalid"}',
-          fullLead: {
-            name: "Gustavo Teste",
-            email: "gustavo@invalido",
-            phone: "11999999999",
-          },
-          at: "23/01/2026 10:15",
-        },
-      ],
     },
   },
   {
-    id: "2234234",
-    name: "Salesforce",
-    subtitle: "Concessionária HBW",
-    pipeline: { input: true, process: true, output: true },
+    id: "2",
+    name: "Grupo Valence",
+    subtitle: "Matriz Belo Horizonte",
+    pipeline: { cms: true, make: true, crm: true },
+    sync: "Agora mesmo",
+    status: "Saudável",
     crm: {
-      name: "Salesforce Production",
-      status: "Alerta",
-      endpoint: "https://api.salesforce.com/v1/leads",
-      token: "",
-      leadsSent: 45200,
-      successRate: 99.2,
-      activeErrors: 0,
-      documentation: "https://developer.salesforce.com/docs",
-      techNotes:
-        "Integração via OAuth2. Requer ClientID atualizado anualmente via Make.com.",
-      mapping: [
-        { field: "full_name", target: "Name", required: true },
-        { field: "email", target: "Email", required: true },
-        { field: "phone", target: "Phone", required: false },
-      ],
-      rawJson: {
-        lead: {
-          name: "{{full_name}}",
-          email: "{{email}}",
-          source: "CMS_Automotivo",
-        },
+      name: "HubSpot CRM",
+      endpoint: "https://api.hubapi.com/crm/v3/objects/contacts",
+      token: "pat-na1-3829-xxxx-xxxx",
+      leadsSent: 12840,
+      successRate: 99.8,
+      error: {
+        hasActiveError: false,
+        recentIncidents: [],
       },
-      sourceData: [
-        { name: "Google Ads", value: 18500, color: "#3b82f6" },
-        { name: "Facebook Ads", value: 12400, color: "#1d4ed8" },
-        { name: "Site Direto", value: 8900, color: "#64748b" },
-      ],
-      analyticsData: [
-        { label: "08:00", leads: 450, success: 98, errors: 5, latency: 145 },
-        { label: "10:00", leads: 890, success: 99, errors: 2, latency: 160 },
-        {
-          label: "12:00",
-          leads: 1100,
-          success: 94,
-          errors: 45,
-          latency: 210,
+      documentation: {
+        officialDocs: "https://developers.hubspot.com/docs/api/crm/contacts",
+        payload: {
+          name: "firstname",
+          email: "email",
+          phone: "phone",
         },
-        { label: "14:00", leads: 920, success: 99, errors: 3, latency: 155 },
-        {
-          label: "16:00",
-          leads: 1050,
-          success: 100,
-          errors: 0,
-          latency: 140,
-        },
-        { label: "18:00", leads: 700, success: 98, errors: 8, latency: 135 },
-      ],
-      recentIncidents: [
-        {
-          id: "err-01",
-          type: "Validation Error",
-          message: "E-mail inválido ou campo obrigatório ausente.",
-          return: '400 Bad Request: {"error": "email_format_invalid"}',
-          fullLead: {
-            name: "Gustavo Teste",
-            email: "gustavo@invalido",
-            phone: "11999999999",
+        techNotes:
+          "Utiliza Private App Token (PAT) permanente. Limite de 100 requisições a cada 10 segundos.",
+      },
+    },
+  },
+  {
+    id: "3",
+    name: "Dealer Connect",
+    subtitle: "Filial São Paulo - Zona Sul",
+    pipeline: { cms: true, make: false, crm: false },
+    sync: "Falha (1h)",
+    status: "Crítico",
+    crm: {
+      name: "Syonet API",
+      endpoint: "https://api.syonet.com/v1/leads/integracao",
+      token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      leadsSent: 8420,
+      successRate: 64.2,
+      error: {
+        hasActiveError: true,
+        recentIncidents: [
+          {
+            id: "err-02",
+            errorType: "Timeout Connection",
+            message: "A API de destino não respondeu em 30.000ms.",
+            apiResponse:
+              "504 Gateway Time-out: Upstream server is not responding",
+            leadData: {
+              name: "Carlos Ferreira",
+              email: "carlos.f@empresa.com",
+              interesse: "SUV Compass",
+            },
+            occurredAt: "2026-02-22T14:30:12Z",
           },
-          at: "23/01/2026 10:15",
+          {
+            id: "err-03",
+            errorType: "Authentication Failed",
+            message: "Token expirado ou revogado no destino.",
+            apiResponse: "401 Unauthorized: Invalid Token",
+            leadData: {
+              name: "Ana Silva",
+              email: "ana.silva@gmail.com",
+            },
+            occurredAt: "2026-02-22T14:31:05Z",
+          },
+        ],
+      },
+      documentation: {
+        officialDocs: "https://docs.syonet.com/integracoes",
+        payload: {
+          nome: "name",
+          email: "email",
+          cod_loja: "102",
         },
-      ],
+        techNotes:
+          "Instabilidade frequente na porta 443 da API do cliente. O Make está configurado para 3 retentativas (delay de 5 min).",
+      },
+    },
+  },
+  {
+    id: "4",
+    name: "AutoSimpy",
+    subtitle: "Operação LATAM",
+    pipeline: { cms: true, make: true, crm: true },
+    sync: "15 min atrás",
+    status: "Alerta",
+    crm: {
+      name: "RD Station Marketing",
+      endpoint: "https://api.rd.services/platform/conversions",
+      token: "******************",
+      leadsSent: 34500,
+      successRate: 92.5,
+      error: {
+        hasActiveError: true,
+        recentIncidents: [
+          {
+            id: "err-04",
+            errorType: "Duplicate Entry",
+            message:
+              "Lead já existe na base e não permite atualização sem identificador único.",
+            apiResponse: '409 Conflict: {"error": "contact_already_exists"}',
+            leadData: {
+              name: "Roberto Mendes",
+              email: "rmendes@corp.com",
+              conversion_identifier: "form-whatsapp-site",
+            },
+            occurredAt: "2026-02-22T08:10:00Z",
+          },
+        ],
+      },
+      documentation: {
+        officialDocs:
+          "https://developers.rdstation.com/pt-BR/reference/conversions",
+        payload: {
+          identificador: "conversion_identifier",
+          email: "email",
+          nome: "name",
+        },
+        techNotes:
+          "Sempre enviar o campo 'conversion_identifier' para evitar duplicações na timeline do lead.",
+      },
+    },
+  },
+  {
+    id: "5",
+    name: "Motors Prime",
+    subtitle: "Concessionária Digital Premium",
+    pipeline: { cms: true, make: true, crm: true },
+    sync: "5 min atrás",
+    status: "Saudável",
+    crm: {
+      name: "Pipedrive",
+      endpoint: "https://api.pipedrive.com/v1/persons",
+      token: "api_token=9f8e7d6c5b4a3...",
+      leadsSent: 150,
+      successRate: 100,
+      error: {
+        hasActiveError: false,
+        recentIncidents: [],
+      },
+      documentation: {
+        officialDocs: "https://developers.pipedrive.com/docs/api/v1/Persons",
+        payload: {
+          name: "name",
+          email: "email[0].value",
+          phone: "phone[0].value",
+        },
+        techNotes:
+          "Nova conta provisionada ontem. Pipedrive exige que email e telefone sejam enviados como array de objetos (value e primary).",
+      },
     },
   },
 ];

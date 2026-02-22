@@ -1,8 +1,9 @@
-import { AlertCircle, Bug, ChevronDown } from 'lucide-react'
-import { useState } from 'react'
+import { AlertCircle, ChevronDown } from "lucide-react";
+import { useState } from "react";
+import type { incidentsMapping } from "../../../../types/crm";
 
-function ErrorDiagnostics({ inc }) {
-  const [expandedErr, setExpandedErr] = useState(null)
+function ErrorDiagnostics({ inc }: { inc: incidentsMapping }) {
+  const [expandedErr, setExpandedErr] = useState(null);
 
   return (
     <div
@@ -18,17 +19,17 @@ function ErrorDiagnostics({ inc }) {
             <AlertCircle size={24} />
           </div>
           <div>
-            <p className="font-black text-slate-800">{inc.type}</p>
+            <p className="font-black text-slate-800">{inc.errorType}</p>
             <p className="text-xs text-slate-500">{inc.message}</p>
           </div>
         </div>
         <div className="flex items-center gap-4">
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-            {inc.at}
+            {inc.occurredAt}
           </span>
           <ChevronDown
             size={20}
-            className={`text-slate-300 transition-transform ${expandedErr === inc.id ? 'rotate-180' : ''}`}
+            className={`text-slate-300 transition-transform ${expandedErr === inc.id ? "rotate-180" : ""}`}
           />
         </div>
       </div>
@@ -39,7 +40,7 @@ function ErrorDiagnostics({ inc }) {
               Retorno do CRM
             </p>
             <div className="bg-slate-900 text-rose-400 p-5 rounded-2xl font-mono text-[10px] leading-relaxed border border-rose-900/20">
-              {inc.return}
+              {inc.apiResponse}
             </div>
           </div>
           <div>
@@ -47,13 +48,13 @@ function ErrorDiagnostics({ inc }) {
               Lead Payload Enviado
             </p>
             <div className="bg-[#0F172A] text-emerald-400 p-5 rounded-2xl font-mono text-[10px] border border-white/5 shadow-inner">
-              <pre>{JSON.stringify(inc.fullLead, null, 2)}</pre>
+              <pre>{JSON.stringify(inc.leadData, null, 2)}</pre>
             </div>
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default ErrorDiagnostics
+export default ErrorDiagnostics;

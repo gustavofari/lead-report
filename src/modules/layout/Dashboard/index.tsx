@@ -5,10 +5,10 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
-import StatusChart from "../../common/components/StatusChart";
-import StatCard from "../../common/components/StatCard";
+import StatusChart from "../../../common/components/StatusChart";
+import StatCard from "../../../common/components/StatCard";
 import Clients from "./Clients";
-import Header from "./Header";
+import Header from "../Header";
 
 interface MetricData {
   label: string;
@@ -69,25 +69,8 @@ export default function Dashboard() {
             <StatCard stats={stats} key={stats.label} />
           ))}
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl shadow-sm h-[48%] p-6">
-          <div className="flex justify-between">
-            <h1 className="font-semibold">Status dos clientes</h1>
-            <ul className="flex">
-              <li className="pr-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-2" />
-                Saudável
-              </li>
-              <li className="pr-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-orange-500 mr-2" />
-                Atenção
-              </li>
-              <li className="pr-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-red-500 mr-2" />
-                Crítico
-              </li>
-            </ul>
-          </div>
-          <div className="w-full h-80 p-8">
+        <div className="bg-white border border-slate-200 rounded-xl shadow-sm h-[48%]">
+          <div className="w-full h-full">
             <StatusChart />
           </div>
         </div>
