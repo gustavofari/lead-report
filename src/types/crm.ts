@@ -57,7 +57,6 @@ export type ClientCrmConfig = {
 export type Client = {
   id: string;
   name: string;
-  subtitle: string;
   pipeline: Pipeline;
   crm: ClientCrmConfig;
   status: ClientStatus;

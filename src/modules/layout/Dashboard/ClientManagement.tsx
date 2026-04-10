@@ -4,9 +4,8 @@ export default function ClientManagement() {
       <div className="grid grid-cols-12 text-[10px] font-heavy text-slate-400 uppercase tracking-widest">
         <div className="col-span-4 pl-2">Cliente / Instância</div>
         <div className="col-span-2">Última Sinc.</div>
-        <div className="col-span-1 text-center">Status</div>
-        <div className="col-span-2 text-center">Quota</div>
-        <div className="col-span-1 text-right pr-2">Ação</div>
+        <div className="col-span-4 text-center">Status</div>
+        <div className="col-span-2 text-right pr-2">Ação</div>
       </div>
     </div>
   );

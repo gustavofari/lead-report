@@ -1,11 +1,12 @@
 import { useMemo, useState } from "react";
 import { escapeRegExp } from "../utils/regexUtils";
 import { useDebounce } from "./useDebounce";
+import { DEBOUNCE_DELAY } from "../../config/constants";
 import type { Client } from "../../types/crm";
 
 export default function useClientSearch<T extends Client>(rawClients: T[]) {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const query = useDebounce(searchTerm, 500);
+  const query = useDebounce(searchTerm, DEBOUNCE_DELAY);
 
   const dataFilter = useMemo(() => {
     if (query) {

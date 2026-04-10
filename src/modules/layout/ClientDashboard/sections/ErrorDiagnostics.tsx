@@ -1,17 +1,19 @@
 import { AlertCircle, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import type { incidentsMapping } from "../../../../types/crm";
+import { ERROR_DIAGNOSTICS_LABELS } from "../../../../config/constants";
 
-function ErrorDiagnostics({ inc }: { inc: incidentsMapping }) {
-  const [expandedErr, setExpandedErr] = useState(null);
+interface ErrorDiagnosticsProps {
+  inc: incidentsMapping;
+}
+
+function ErrorDiagnostics({ inc }: ErrorDiagnosticsProps) {
+  const [expandedErr, setExpandedErr] = useState<string | null>(null);
 
   return (
-    <div
-      key={inc.id}
-      className="bg-white border-2 border-slate-100 rounded-[35px] overflow-hidden"
-    >
+    <div className="bg-white border-2 border-slate-100 rounded-[35px] overflow-hidden">
       <div
-        className="p-6 bg-slate-50/50 flex justify-between items-center cursor-pointer"
+        className="p-6 bg-slate-50/50 flex justify-between items-center cursor-pointer hover:bg-slate-100/50 transition-colors"
         onClick={() => setExpandedErr(expandedErr === inc.id ? null : inc.id)}
       >
         <div className="flex items-center gap-4">
@@ -37,17 +39,17 @@ function ErrorDiagnostics({ inc }: { inc: incidentsMapping }) {
         <div className="p-8 border-t border-slate-100 grid grid-cols-2 gap-8 bg-white">
           <div>
             <p className="text-[10px] font-black text-slate-400 uppercase mb-3 tracking-widest">
-              Retorno do CRM
+              {ERROR_DIAGNOSTICS_LABELS.CRM_RETURN}
             </p>
-            <div className="bg-slate-900 text-rose-400 p-5 rounded-2xl font-mono text-[10px] leading-relaxed border border-rose-900/20">
+            <div className="bg-slate-900 text-rose-400 p-5 rounded-2xl font-mono text-[10px] leading-relaxed border border-rose-900/20 overflow-x-auto">
               {inc.apiResponse}
             </div>
           </div>
           <div>
             <p className="text-[10px] font-black text-slate-400 uppercase mb-3 tracking-widest">
-              Lead Payload Enviado
+              {ERROR_DIAGNOSTICS_LABELS.LEAD_PAYLOAD}
             </p>
-            <div className="bg-[#0F172A] text-emerald-400 p-5 rounded-2xl font-mono text-[10px] border border-white/5 shadow-inner">
+            <div className="bg-[#0F172A] text-emerald-400 p-5 rounded-2xl font-mono text-[10px] border border-white/5 shadow-inner overflow-x-auto">
               <pre>{JSON.stringify(inc.leadData, null, 2)}</pre>
             </div>
           </div>

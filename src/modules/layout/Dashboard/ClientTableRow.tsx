@@ -29,9 +29,6 @@ const ClientTableRow = React.memo(function ClientTableRow({
             <p className="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
               {client.name}
             </p>
-            <p className="text-xs text-slate-400 font-medium">
-              {client.subtitle}
-            </p>
           </div>
         </div>
       </td>
@@ -48,7 +45,7 @@ const ClientTableRow = React.memo(function ClientTableRow({
         <div className="flex items-center gap-2">
           <div
             key={client.id}
-            className={`w-8 h-8 rounded-lg border flex items-center justify-center ${"error" === "error" ? "bg-rose-50 border-rose-100 text-rose-500" : "bg-emerald-50 border-emerald-100 text-emerald-500"}`}
+            className={`w-8 h-8 rounded-lg border flex items-center justify-center ${client.crm.error.hasActiveError ? "bg-rose-50 border-rose-100 text-rose-500" : "bg-emerald-50 border-emerald-100 text-emerald-500"}`}
           >
             <Zap size={14} fill="currentColor" />
           </div>

@@ -2,8 +2,7 @@ import { Bell } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "../../../../lib/utils";
 import { ICON_SIZES } from "../constants/constants";
-import { recentIncidents } from "../../../../data/incidents";
-import NotificationDropdown from "./NotificationDropdown";
+// import NotificationDropdown from "./NotificationDropdown";
 
 function NotificationButton() {
   const notificationRef = useRef<HTMLDivElement>(null);
@@ -35,17 +34,17 @@ function NotificationButton() {
         )}
       >
         <Bell size={ICON_SIZES.lg} strokeWidth={2.5} />
-        {recentIncidents.length > 0 && (
+        {/* {recentIncidents.length > 0 && (
           <span className="absolute top-2 right-2 flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 border-2 border-white"></span>
           </span>
-        )}
+        )} */}
       </button>
 
-      {showNotifications && (
+      {/* {showNotifications && (
         <NotificationDropdown recentIncidents={recentIncidents} />
-      )}
+      )} */}
     </div>
   );
 }

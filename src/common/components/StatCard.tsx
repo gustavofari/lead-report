@@ -2,7 +2,6 @@ import type { LucideIcon } from "lucide-react";
 
 type StatCardData = {
   label: string;
-  subtitle: string;
   value: string;
   change: string;
   icon: LucideIcon;
@@ -15,7 +14,7 @@ type StatCardProps = {
 };
 
 export default function StatCard({ stats }: StatCardProps) {
-  const { label, subtitle, value, change, icon: Icon, isAlert, color } = stats;
+  const { label, value, change, icon: Icon, isAlert, color } = stats;
 
   return (
     <>
@@ -37,11 +36,10 @@ export default function StatCard({ stats }: StatCardProps) {
           </span>
         </div>
         <div className="z-10 mt-auto">
-          <div className={`text-4xl font-heavy tracking-tighter ${color}`}>
+          <div
+            className={`text-4xl text-center font-heavy tracking-tighter ${color}`}
+          >
             {value}
-          </div>
-          <div className="text-xs font-bold text-slate-400 mt-1">
-            {subtitle}
           </div>
         </div>
         <Icon
